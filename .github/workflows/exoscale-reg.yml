@@ -27,8 +27,10 @@ jobs:
       - name: Build Docker image
         working-directory: ./src/backend
         run: |
-          docker build -t ${{ env.REGISTRY_URL }}/${{ env.REPOSITORY }}:latest .
-
+          docker build todo_app:latest .
+      - name: Tag Docker image
+        run: |
+          docker tag todo_app:latest exo.container-registry.com/c213-emf/backend-app-vaq:latest  
       - name: Push Docker image
         run: |
-          docker push ${{ env.REPOSITORY }}:latest
+          docker push exo.container-registry.com/c213-emf/backend-app-vaq:latest 
