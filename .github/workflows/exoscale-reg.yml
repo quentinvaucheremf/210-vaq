@@ -27,7 +27,7 @@ jobs:
       - name: Build Docker image
         working-directory: ./src/backend
         run: |
-          docker build -t ${{ env.REPOSITORY }}:latest .
+          docker build -t ${{ env.REGISTRY_URL }}/${{ env.REPOSITORY }}:latest .
 
       - name: Push Docker image
         run: |
