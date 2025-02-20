@@ -25,8 +25,8 @@ jobs:
         run: docker login ${{ env.REGISTRY_URL }} -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_TOKEN }}
 
       - name: Build Docker image
+        working-directory: ./src/backend
         run: |
-          working-directory: ./src/backend
           docker build -t ${{ env.REPOSITORY }}:latest .
 
       - name: Push Docker image

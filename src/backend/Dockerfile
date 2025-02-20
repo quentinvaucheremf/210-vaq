@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 COPY ./src/backend/package*.json ./ 
 # Installer les dépendances de l'application 
 RUN npm install 
-# Copier le reste des fichiers de l'application dans le conteneur 
+# Copier le reste des fichiers de l'application dans le conteneur
 COPY ./src/backend/. . 
 # Exposer le port utilisé par l'application 
 EXPOSE 8080 
