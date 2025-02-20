@@ -31,4 +31,4 @@ jobs:
 
       - name: Push Docker image
         run: |
-          docker push ${{ env.REPOSITORY }}:latest
+          docker push exo.container-registry.com/c213-emf/backend-app-vaq:latest
