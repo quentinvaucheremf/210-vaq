@@ -1,0 +1,29 @@
+name: Build and push Docker image to Exoscale
+ 
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/backend/**'  # Déclenche uniquement si du code dans backend/ est modifié
+ 
+env:
+  REGISTRY: https://exo.container-registry.com/
+  IMAGE_NAME: c213-emf/backend-app-vaq
+ 
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+ 
+      - name: Log in to Exoscale Registry
+        run: echo "${{ secrets.EXOSCALE_PASSWORD }}" | docker login -u "${{ secrets.EXOSCALE_USERNAME }}" --password-stdin ${{ env.REGISTRY }}
+ 
+      - name: Build Docker image
+        run: docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest backend/
+ 
+      - name: Push Docker image
+        run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
