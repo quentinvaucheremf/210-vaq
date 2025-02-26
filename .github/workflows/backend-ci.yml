@@ -23,6 +23,7 @@ jobs:
         run: echo "${{ secrets.EXOSCALE_PASSWORD }}" | docker login -u "${{ secrets.EXOSCALE_USERNAME }}" --password-stdin ${{ env.REGISTRY }}
  
       - name: Build Docker image
+        working-directory: ./src/backend
         run: docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest .
  
       - name: Push Docker image
