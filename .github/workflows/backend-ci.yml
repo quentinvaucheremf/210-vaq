@@ -8,7 +8,7 @@ on:
       - 'src/backend/**'  # Déclenche uniquement si du code dans backend/ est modifié
  
 env:
-  REGISTRY: https://exo.container-registry.com/
+  REGISTRY: https://exo.container-registry.com
   IMAGE_NAME: c213-emf/backend-app-vaq
  
 jobs:
