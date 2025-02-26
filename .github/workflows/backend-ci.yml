@@ -8,7 +8,7 @@ on:
       - 'src/backend/**'  # Déclenche uniquement si du code dans backend/ est modifié
  
 env:
-  REGISTRY: https://exo.container-registry.com
+  REGISTRY: exo.container-registry.com
   IMAGE_NAME: c213-emf/backend-app-vaq
  
 jobs:
@@ -23,7 +23,7 @@ jobs:
         run: echo "${{ secrets.EXOSCALE_PASSWORD }}" | docker login -u "${{ secrets.EXOSCALE_USERNAME }}" --password-stdin ${{ env.REGISTRY }}
  
       - name: Build Docker image
-        run: docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest backend/
+        run: docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest .
  
       - name: Push Docker image
         run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
